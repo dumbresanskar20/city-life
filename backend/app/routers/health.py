@@ -11,11 +11,11 @@ def get_health():
     is_connected, is_postgis, message = check_database_connection()
 
     integrations = {
-        "overpass": "mock" if settings.USE_MOCKS or not settings.CITY_BBOX else "live",
-        "openrouteservice": "mock" if settings.USE_MOCKS or not settings.ORS_API_KEY else "live",
-        "openweather": "mock" if settings.USE_MOCKS or not settings.OPENWEATHER_API_KEY else "live",
-        "wikipedia": "mock" if settings.USE_MOCKS else "live",
-        "anthropic_claude": "mock" if settings.USE_MOCKS or not settings.ANTHROPIC_API_KEY else "live",
+        "overpass": "mock" if settings.USE_MOCKS or not settings.CITY_BBOX else "live (openstreetmap free)",
+        "openrouteservice": "live (openrouteservice free)" if (not settings.USE_MOCKS and settings.ORS_API_KEY) else "smart_corridor_engine (free)",
+        "weather": "live (openweather)" if (not settings.USE_MOCKS and settings.OPENWEATHER_API_KEY) else ("live (open-meteo free)" if not settings.USE_MOCKS else "mock"),
+        "wikipedia": "mock" if settings.USE_MOCKS else "live (wikimedia free)",
+        "ai_engine": "live (anthropic)" if (not settings.USE_MOCKS and settings.ANTHROPIC_API_KEY) else "local_nlp_vision (free)",
     }
 
     models = {

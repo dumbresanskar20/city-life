@@ -1,3 +1,4 @@
+import httpx
 from datetime import datetime
 from fastapi import APIRouter
 from app.core.config import settings
@@ -7,13 +8,70 @@ router = APIRouter(prefix="/insights", tags=["Insights"])
 
 
 @router.get("/weather", response_model=WeatherResponse)
-def get_weather():
+async def get_weather():
     now = datetime.utcnow()
-    # Realistic weather model for Pune
     hour = now.hour
     is_day = 6 <= hour <= 18
-    temp = 28.5 if is_day else 21.0
 
+    # 1. Try OpenWeather if free key is configured
+    if not settings.USE_MOCKS and settings.OPENWEATHER_API_KEY:
+        try:
+            async with httpx.AsyncClient(timeout=4.0) as client:
+                res = await client.get(
+                    "https://api.openweathermap.org/data/2.5/weather",
+                    params={
+                        "lat": settings.CITY_LAT,
+                        "lon": settings.CITY_LNG,
+                        "appid": settings.OPENWEATHER_API_KEY,
+                        "units": "metric",
+                    },
+                )
+                if res.status_code == 200:
+                    data = res.json()
+                    temp = float(data.get("main", {}).get("temp", 28.0))
+                    condition = str(data.get("weather", [{}])[0].get("main", "Clear"))
+                    humidity = int(data.get("main", {}).get("humidity", 54))
+                    wind_speed = float(data.get("wind", {}).get("speed", 3.5)) * 3.6
+                    return WeatherResponse(
+                        city=settings.CITY_NAME,
+                        temperature_c=round(temp, 1),
+                        condition=condition,
+                        humidity_percent=humidity,
+                        wind_speed_kmh=round(wind_speed, 1),
+                        rain_past_48h_mm=0.0,
+                        icon="cloud-sun" if is_day else "moon",
+                        updated_at=now,
+                    )
+        except Exception:
+            pass
+
+    # 2. Try Open-Meteo (100% Free, NO API Key needed)
+    if not settings.USE_MOCKS:
+        try:
+            async with httpx.AsyncClient(timeout=4.0) as client:
+                res = await client.get(
+                    f"https://api.open-meteo.com/v1/forecast?latitude={settings.CITY_LAT}&longitude={settings.CITY_LNG}&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m"
+                )
+                if res.status_code == 200:
+                    current = res.json().get("current", {})
+                    temp = float(current.get("temperature_2m", 28.0))
+                    humidity = int(current.get("relative_humidity_2m", 52))
+                    wind_speed = float(current.get("wind_speed_10m", 12.0))
+                    return WeatherResponse(
+                        city=settings.CITY_NAME,
+                        temperature_c=round(temp, 1),
+                        condition="Clear / Mild" if is_day else "Pleasant Night",
+                        humidity_percent=humidity,
+                        wind_speed_kmh=round(wind_speed, 1),
+                        rain_past_48h_mm=0.0,
+                        icon="cloud-sun" if is_day else "moon",
+                        updated_at=now,
+                    )
+        except Exception:
+            pass
+
+    # High-fidelity realistic Pune weather fallback
+    temp = 28.5 if is_day else 21.0
     return WeatherResponse(
         city=settings.CITY_NAME,
         temperature_c=temp,

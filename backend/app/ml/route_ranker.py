@@ -110,6 +110,13 @@ def evaluate_and_rank_routes(
     """
     Evaluates risk profile for each route and ranks Fastest, Safest, Balanced.
     """
+    from app.models.incident import Incident
+    from app.models.place import Place
+
+    # Preload once to avoid hundreds of remote cloud database queries
+    all_incidents = db.query(Incident).all()
+    all_places = db.query(Place).all()
+
     candidates = generate_candidate_routes(origin, destination)
     scored_routes = []
 
@@ -119,9 +126,16 @@ def evaluate_and_rank_routes(
         worst_risk = 0.0
         worst_point = geom[0]
 
-        # Sample every 3rd point along geometry for risk profile
+        # Sample every 2nd point along geometry for risk profile
         for pt in geom[::2]:
-            score_res = compute_safety_score_at_point(db, pt[0], pt[1], hour)
+            score_res = compute_safety_score_at_point(
+                db,
+                pt[0],
+                pt[1],
+                hour,
+                incidents=all_incidents,
+                places=all_places,
+            )
             pt_risk = score_res["risk_score"] * c["base_risk_bias"]
             risk_profile.append(round(pt_risk * 100.0, 1))
             if pt_risk > worst_risk:

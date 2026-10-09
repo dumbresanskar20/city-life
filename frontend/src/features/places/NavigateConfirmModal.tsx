@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Navigation, MapPin, ShieldCheck, ExternalLink, Info, X } from "lucide-react";
+import { Navigation, MapPin, ShieldCheck, ExternalLink, Info } from "lucide-react";
 import { Modal } from "../../components/Modal";
 import { Button } from "../../components/Button";
 import { Badge } from "../../components/Badge";

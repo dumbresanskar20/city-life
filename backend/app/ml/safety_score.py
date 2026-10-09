@@ -1,6 +1,6 @@
 import math
 from datetime import datetime
-from typing import Dict, Tuple
+from typing import Dict, Tuple, Optional, List
 from sqlalchemy.orm import Session
 
 from app.core.db import haversine_distance_m
@@ -13,6 +13,8 @@ def compute_safety_score_at_point(
     lat: float,
     lng: float,
     hour: int = 14,
+    incidents: Optional[List[Incident]] = None,
+    places: Optional[List[Place]] = None,
 ) -> Dict[str, any]:
     """
     Computes explainable safety score (0-100, higher = safer):
@@ -23,7 +25,8 @@ def compute_safety_score_at_point(
     sigma_m = 200.0  # 200 meters bandwidth
 
     # 1. Incident density with Gaussian kernel & recency decay
-    incidents = db.query(Incident).all()
+    if incidents is None:
+        incidents = db.query(Incident).all()
     density_accum = 0.0
     severity_sum = 0.0
     weight_sum = 0.0
@@ -62,7 +65,8 @@ def compute_safety_score_at_point(
     lighting_score = 0.75 if (18.51 <= lat <= 18.54 and 73.83 <= lng <= 73.88) else 0.50
 
     # 5. Footfall proxy (0-1) - density of open shops/places nearby
-    places = db.query(Place).all()
+    if places is None:
+        places = db.query(Place).all()
     nearby_places_count = sum(1 for p in places if haversine_distance_m(lat, lng, p.lat, p.lng) <= 400.0)
     footfall_proxy = min(1.0, nearby_places_count / 3.0)
     if 18 <= hour <= 21:
