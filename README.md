@@ -3,6 +3,10 @@
 > **Pune Smart City Platform & Credibility Verification Engine**  
 > Turning raw citizen reports and urban data into verified, actionable navigation and safety insights. Zero Docker required.
 
+- **Live Production App (Vercel):** [https://city-life-seven.vercel.app/](https://city-life-seven.vercel.app/)
+- **Live Production API (Render):** [https://city-life-qli2.onrender.com/](https://city-life-qli2.onrender.com/)
+- **API Health Check:** [https://city-life-qli2.onrender.com/health](https://city-life-qli2.onrender.com/health)
+
 ---
 
 ## 🌟 The Core Differentiator: The Verified Loop

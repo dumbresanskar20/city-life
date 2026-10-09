@@ -1,4 +1,4 @@
-const rawApiBase = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+const rawApiBase = import.meta.env.VITE_API_BASE_URL || "https://city-life-qli2.onrender.com";
 const API_BASE = rawApiBase.replace(/\/+$/, "");
 
 async function fetchJson<T>(endpoint: string, options?: RequestInit): Promise<T> {
