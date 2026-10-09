@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: citycompass-backend
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    plan: free
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: USE_MOCKS
+        value: "false"
+      - key: CITY_NAME
+        value: Pune
+      - key: CITY_LAT
+        value: "18.5204"
+      - key: CITY_LNG
+        value: "73.8567"
+      - key: CITY_BBOX
+        value: "18.44,73.75,18.62,73.96"
+      - key: DATABASE_URL
+        sync: false
+      - key: CORS_ORIGINS
+        sync: false
+      - key: PYTHON_VERSION
+        value: "3.11.9"
