@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment files
+.env
+.env.local
+*.env
+!.env.example
+
+# Database & Uploads
+*.db
+*.sqlite
+*.sqlite3
+uploads/
+scratch/
+
+# Build artifacts
+dist/
+build/
+.cache/
+.pytest_cache/
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,52 @@
+[
+  {
+    "place_name": "Shaniwar Wada",
+    "era": "Peshwa Maratha Empire (1732 CE)",
+    "summary": "The monumental 7-story seat of the Peshwas of the Maratha Empire, famed for its massive Dilli Darwaza spiked gates and rich military history.",
+    "significance": "Built by Peshwa Baji Rao I as the nerve center of Maratha administrative power. Surviving defensive bastion and courtyards testify to 18th-century stone fortification.",
+    "visiting_hours": "09:30 AM - 05:30 PM (Sound & Light Show: 07:00 PM)",
+    "entry_fee": "₹25 (Domestic) / ₹300 (Foreign)",
+    "traditions": ["Sound and Light Show", "Maharashtra Day Commemoration", "Maratha Heritage Walks"],
+    "wikidata_id": "Q3630669"
+  },
+  {
+    "place_name": "Aga Khan Palace",
+    "era": "British Colonial / Freedom Movement (1892 CE)",
+    "summary": "Italian-arched palace with expansive lawns, renowned as the detention site of Mahatma Gandhi, Kasturba Gandhi, and Sarojini Naidu during the Quit India Movement.",
+    "significance": "Commissioned by Sultan Muhammed Shah Aga Khan III to aid famine-affected citizens, later turning into a pivotal sanctuary of India's independence movement with Gandhian memorials.",
+    "visiting_hours": "09:00 AM - 05:30 PM",
+    "entry_fee": "₹25 (Domestic) / ₹300 (Foreign)",
+    "traditions": ["Gandhi Jayanti Prayers (Oct 2)", "Martyrs Day Tributes", "Khadi exhibitions"],
+    "wikidata_id": "Q390117"
+  },
+  {
+    "place_name": "Sinhagad Fort",
+    "era": "Medieval Maratha Era (c. 1340 CE)",
+    "summary": "Cliff-top fortress towering at 1,312 meters elevation in the Sahyadri range, site of the legendary Battle of Sinhagad in 1670 led by Tanaji Malusare.",
+    "significance": "Strategic mountain citadel immortalized by Chhatrapati Shivaji Maharaj's exclamation: 'Gad ala, pan sinh gela' ('The fort is won, but the lion is lost').",
+    "visiting_hours": "06:00 AM - 06:00 PM",
+    "entry_fee": "₹50 (Vehicle fee)",
+    "traditions": ["Tanaji Malusare Smruti Din", "Monsoon mist treks", "Kanda Bhaji and Pithla Bhakri culinary heritage"],
+    "wikidata_id": "Q3635398"
+  },
+  {
+    "place_name": "Pataleshwar Cave Temple",
+    "era": "Rashtrakuta Dynasty (8th Century CE)",
+    "summary": "Monolithic rock-cut underground temple carved from a single basalt rock mass, featuring a circular Nandi pavilion and sanctuary to Lord Shiva.",
+    "significance": "Exemplary specimen of 8th-century rock-cut architecture in western India, reflecting the artistic grandeur and acoustic precision of ancient basalt sculpture.",
+    "visiting_hours": "08:30 AM - 05:30 PM",
+    "entry_fee": "Free Entry",
+    "traditions": ["Maha Shivaratri Celebrations", "Basalt Acoustic Chanting", "Heritage Photowalks"],
+    "wikidata_id": "Q7144246"
+  },
+  {
+    "place_name": "Raja Dinkar Kelkar Museum",
+    "era": "20th Century Heritage Collection",
+    "summary": "Intricate museum housing over 20,000 artifacts amassed by Dr. D.G. Kelkar, showcasing musical instruments, weapons, and the recreated Mastani Mahal courtyard.",
+    "significance": "A rare personal tribute dedicated to master craftsmanship across Indian folklore, everyday domestic art, and Peshwa-era courtly aesthetics.",
+    "visiting_hours": "10:00 AM - 05:30 PM",
+    "entry_fee": "₹50 (Adults) / ₹10 (Children)",
+    "traditions": ["Classical Sitar recitals", "Mastani Mahal storytelling", "Craft workshops"],
+    "wikidata_id": "Q7285437"
+  }
+]
